@@ -1,13 +1,17 @@
 <?php
 class LoginController extends Controller{
-	function index(){
+	
+	function __construct(){
 		if (isset($_COOKIE['trista_user'])){
-			if($this->cookieLogin()) {
-				$this->display('userinfo');
-			} else {
-				$this->display('login_dialog');
-			}
-		}else {
+			return $this->cookieLogin(); 
+		}
+	
+	}
+
+	function index(){
+		if (App::$user instanceof User) {
+			$this->display('userinfo');
+		} else {
 			$this->display('login_dialog');
 		}
 	}
@@ -15,7 +19,7 @@ class LoginController extends Controller{
 		$params=explode(':::', $_COOKIE['trista_user']);
 		if(1<count($params)){
 			App::$user = new User($params[0], $params[1]);
-			return true;
+			return App::$user->login();
 		} else {
 			return false;
 		}

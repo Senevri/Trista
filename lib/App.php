@@ -6,6 +6,12 @@ class App{
 	static public $template;
 	static public $config;
 	static public $user;
+	static public $ctrl;
+
+	function __construct(){
+		// this takes care we're logged in everywhere on site
+		$this->ctrl = new LoginController(); 
+	}
 
 	function display($template){
 		$fileloc = Config::$local_dir . "/tpl/" . $template . ".tpl.php";
@@ -13,8 +19,8 @@ class App{
 	}
 
 	function index(){
-		$ctrl=new LoginController();
-		$ctrl->index();
+		//$ctrl=new LoginController();
+		$this->ctrl->index();
 		//$this->display('userinfo');
 		$this->text = "Running application";
 		$this->display('pre_content');
@@ -47,7 +53,7 @@ class App{
 	 *	Expected params: $c ontroller, $a ction $p arams
 	 */
 	function handleRequest($params){
-		if(empty($params)){
+		if(empty($params) ){
 			$this->index();
 		} else {
 			extract($params);

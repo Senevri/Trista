@@ -4,6 +4,7 @@ class TestController extends Controller{
 		if(App::$user instanceof User) {
 			$this->display('load_dialog');
 			echo"<pre>";
+			echo"";
 			var_dump($_GET);
 			echo"</pre>";
 		}
@@ -32,6 +33,44 @@ class TestController extends Controller{
 			$this->text = file_get_contents($filename);
 			$this->filename = $params['p'];
 			$this->display('editbox');
+		}
+	}
+
+	function message($params){
+		if(app::$user instanceof user) {
+			if(isset($params['id'])){
+				/*get existing post*/
+				$filename = Config::$data_dir . '/posts/' .$params['id'];
+				$this->text = file_get_contents($filename);
+				$json=json_decode($this->text);
+				$this->post=$json->body;
+				$this->title=$json->title;
+			}
+			$this->display('userinfo');
+			$this->display('postmessage');
+			$this->display('pre_content');
+			var_dump($json);
+		} else {
+			$this->text="not logged in";
+			$this->display('pre_content');
+
+		}
+	}
+
+	function listmessages($params){
+		//read all data from data dir / posts
+		//print all contents from newest to oldest.
+	}
+
+	function postfile($params){
+		if(app::$user instanceof user) {
+			$post = new Post(app::$user->username, $params['post']);
+			if(!empty($params['title'])) {
+				$post->setTitle($params['title']);
+			}
+			$post->save();
+			//$this->display('editbox');
+			$this->index();
 		}
 	}
 

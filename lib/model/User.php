@@ -63,8 +63,10 @@ class User extends Model{
 
 	function writefile($json)
 	{
+		//FIXME: no error control
 		$filename = Config::$data_dir . '/users.json';
-		file_put_contents($filename, $json, FILE_TEXT);
+		//file_put_contents($filename, $json, FILE_TEXT); //php6
+		file_put_contents($filename, $json); //lighty2go
 	}
 
 }

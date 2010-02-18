@@ -35,6 +35,39 @@ class TestController extends Controller{
 		}
 	}
 
+	function message($params){
+		if(app::$user instanceof user) {
+			if(isset($params['id'])){
+				/*get existing post*/
+				$filename = Config::$data_dir . '/posts/' .$params['id'];
+				$this->text = file_get_contents($filename);
+				$json=json_decode($this->text);
+				$this->post=$json->body;
+				$this->topic=$json->topic;
+			}
+			$this->display('userinfo');
+			$this->display('postmessage');
+			$this->display('pre_content');
+			var_dump($json);
+		} else {
+			$this->text="not logged in";
+			$this->display('pre_content');
+
+		}
+	}
+
+	function postfile($params){
+		if(app::$user instanceof user) {
+			$post = new Post(app::$user->username, $params['post']);
+			if(!empty($params['title'])) {
+				$post->setTitle($params['title']);
+			}
+			$post->save();
+			//$this->display('editbox');
+			$this->index();
+		}
+	}
+
 	function writefile($params)
 	{
 		if(App::$user instanceof User) {

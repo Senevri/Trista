@@ -4,7 +4,7 @@ class Post extends Model{
 	public $posted; /* when was this first posted? */
 	public $edited; /* when was this edited?  */
 	public $title; /* what is the title of this post? */
-	public $topic; /* under what topic does this one go? */
+	public $topic; /* under what topic does this one go? FIXME remove? */
 	public $id;  /* unique ID */
 	public $body; /* message body */
 
@@ -13,7 +13,6 @@ class Post extends Model{
 		$this->postcount = Config::$data_dir . '/posts/postcount';
 		$this->user = $user;
 		$this->body = $body;
-		$this->id = $this->getUniqueId();
 	}
 
 	function setTitle($title){
@@ -28,6 +27,9 @@ class Post extends Model{
 			$this->posted = time();
 		} else {
 			$this->edited = time();
+		}
+		if(empty($this->id)){
+			$this->id = $this->getUniqueId();
 		}
 		$post = array(
 			'id'=>$this->id, 

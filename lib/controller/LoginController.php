@@ -51,6 +51,7 @@ class LoginController extends Controller{
 		} else {
 			$this->text ="user logged in";
 			$this->display('pre_content');
+			$this->display('userinfo');
 		}
 		
 	}
@@ -79,6 +80,7 @@ class LoginController extends Controller{
 		}
 		$this->text ="user logged in";
 		$this->display('pre_content');
+		$this->display('userinfo');
 		
 	}
 	function logout(){
@@ -87,6 +89,7 @@ class LoginController extends Controller{
 			$user->logout();
 			$this->text = "user logged out";
 			$this->display('pre_content');
+			$this->display('login_dialog');
 		} else {
 			$this->text = "wtf";
 			$this->display('pre_content');

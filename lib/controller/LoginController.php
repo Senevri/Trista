@@ -25,6 +25,17 @@ class LoginController extends Controller{
 		}
 
 	}
+
+	private function hasCookie(){
+		$params=explode(':::', $_COOKIE['trista_user']);
+		if(1<count($params)){
+			return true;
+		} else {
+			return false;
+		}
+	
+	}
+
 	function login($params){
 		extract($params);
 		if (empty($username) || empty($password)){
@@ -71,10 +82,13 @@ class LoginController extends Controller{
 		
 	}
 	function logout(){
-		if ($this->cookieLogin()){
+		if ($this->hasCookie()){
 			$user = App::$user;
 			$user->logout();
 			$this->text = "user logged out";
+			$this->display('pre_content');
+		} else {
+			$this->text = "wtf";
 			$this->display('pre_content');
 		}
 	}

@@ -19,9 +19,7 @@ class App{
 	}
 
 	function index(){
-		//$ctrl=new LoginController();
 		$this->ctrl->index();
-		//$this->display('userinfo');
 		$this->text = "Running application";
 		$this->display('pre_content');
 

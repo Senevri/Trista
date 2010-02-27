@@ -14,6 +14,13 @@ class Post extends Model{
 		$this->user = $user;
 		$this->body = $body;
 	}
+	function load($id){
+		$json = file_get_contents(Config::$data_dir . '/posts/' . $id);
+		$data = json_decode($json);
+		foreach($data as $k=>$v) {
+			$this->$k = $v;
+		}
+	}
 
 	function setTitle($title){
 		$this->title = $title;
@@ -28,7 +35,7 @@ class Post extends Model{
 		} else {
 			$this->edited = time();
 		}
-		if(empty($this->id)){
+		if(!isset($this->id)){
 			$this->id = $this->getUniqueId();
 		}
 		$post = array(
@@ -41,15 +48,16 @@ class Post extends Model{
 			'body'=>$this->body
 		);
 		$out = json_encode($post);
-		$filename=$this->id . '_' . $this->posted . '_' . $this->user . '.json';
+		$filename=$this->id . '_' . $this->user . '.json';
 		file_put_contents(Config::$data_dir . '/posts/' . $filename, $out, FILE_TEXT);
 
 	}
 
 	function getUniqueId() {
 		$uid = file_get_contents($this->postcount);
+		if (empty ( $uid ) ) $uid=0;
 		file_put_contents($this->postcount, ($uid + 1), FILE_TEXT);	
 		return trim($uid);
 	}
 }
-?>>
+?>

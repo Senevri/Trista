@@ -51,9 +51,10 @@ class LoginController extends Controller{
 		} else {
 			$this->text ="user logged in";
 			$this->display('pre_content');
-			$this->display('userinfo');
+			App::$user = new User($username, $password);
 		}
 		
+		$this->index();
 	}
 
 	function register($params){

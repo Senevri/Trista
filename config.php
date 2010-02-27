@@ -1,8 +1,8 @@
 <?php
 class Config {
-	public static $http_location = 'http://azathoth.dy.fi';
-	public static $local_dir = 'e:\Portable\Lighty2Go\HTDOCS\trista';
-	public static $app_dir = 'e:\Portable\Lighty2Go\HTDOCS\trista\tests';
-	public static $data_dir = 'e:\Portable\Lighty2Go\HTDOCS\trista\tests\data';
+	public static $http_location = 'http://trista.dy.fi/trista';
+	public static $local_dir = "/home/esa/www/trista";
+	public static $app_dir = "/home/esa/www/trista/tests";
+	public static $data_dir = "/home/esa/www/trista/tests/data";
 }
 ?>

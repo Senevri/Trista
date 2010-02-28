@@ -51,7 +51,7 @@ class LoginController extends Controller{
 		} else {
 			$this->text ="user logged in";
 			$this->display('pre_content');
-			App::$user = new User($username, $password);
+			App::$user = new User(strtolower($username), $password);
 		}
 		
 		$this->index();

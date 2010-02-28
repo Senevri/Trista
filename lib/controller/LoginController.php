@@ -44,7 +44,7 @@ class LoginController extends Controller{
 			$this->index();
 			return;
 		}
-		$user = new User($username, $password);
+		$user = new User(strtolower($username), $password);
 		if(!$user->login()) {
 			$this->text = "Error: Could not login";
 			$this->display('pre_content');
@@ -69,7 +69,7 @@ class LoginController extends Controller{
 			$this->index();
 			return;
 		}
-		$user = new User($username, $password);
+		$user = new User(strtolower($username), $password);
 		if(!$user->login()) {
 			if($user->register()){
 				$this->text = "registered new user";

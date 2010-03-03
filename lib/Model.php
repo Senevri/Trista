@@ -1,4 +1,6 @@
 <?php
+
+//TODO must migrate data handilng here and away
 class Model{
 	protected function createfile($filename) {
 		//$out = "Creating file";

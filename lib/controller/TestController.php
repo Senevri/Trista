@@ -16,7 +16,7 @@ class TestController extends Controller{
 		if($this->has_user) {
 			$this->display('load_dialog');
 			echo"<pre>";
-			echo"options: editfile, printfile, message, listmessage\n";
+			echo"options: editfile, printfile\n";
 			echo"</pre>";
 		}
 	}
@@ -47,83 +47,6 @@ class TestController extends Controller{
 		}
 	}
 
-	function message($params){
-		if($this->has_user) {
-			if(isset($params['id'])){
-				/*get existing post*/
-				$filename = Config::$data_dir . '/posts/' .$params['id'];
-				$this->text = file_get_contents($filename);
-				$json=json_decode($this->text);
-				foreach($json as $k=>$v){
-				$this->$k = $v;
-				}
-			}
-			if (empty($this->user) || App::$user->username == $this->user ){
-				$this->display('postmessage');
-			//	$this->display('pre_content');
-			} else {
-				$this->viewmessage($params);
-			}
-		} elseif(isset($params['id'])){
-			//$this->display('pre_content');
-			$this->viewmessage($params);
-		} else {
-			$this->listmessages();
-		}
-	}
-
-	function viewmessage($params){
-		$this->post= new Post("", "");
-		$this->post->load($params['id']);
-		$this->display('viewmessage');
-	}
-
-	function listmessages($params=''){
-		//read all data from data dir / posts
-		//print all contents from newest to oldest.
-		
-		$dir = Config::$data_dir . '/posts/';
-		$this->text="";
-		$this->messages=array();
-		$this->post = new Post("", "");
-		if ($dh = opendir($dir)) {
-			while (($file = readdir($dh)) !== false) {
-				//	$this->text .= "filename: $file : filetype: " . filetype($dir . $file) . "\n";
-				if (substr($file, -4)=="json"){
-					$this->post->load($file);
-					$this->messages[] = array(
-						'index'=>$this->post->id, 
-						'id'=>$file, 
-						'user'=>$this->post->user, 
-						'body'=>$this->post->body,
-						'title'=>$this->post->title);
-						
-				}
-			}
-			rsort($this->messages);
-			if (isset($params['long'])) {
-				$this->display('threadview');
-			} else {
-				$this->display('messagelist');
-			}
-			closedir($dh);
-		}
-	}
-	function postfile($params){
-		if($this->has_user) {
-			$post = new Post(app::$user->username, $this->sanitize($params['body']));
-			if(!empty($params['posted'])){
-				foreach($params as $k=>$v){
-					$post->$k=$this->sanitize($v);
-				}
-			}
-			if(!empty($params['title'])) {
-				$post->setTitle($this->sanitize($params['title']));
-			}
-			if (!empty($params['body'])) $post->save();
-			$this->listmessages();
-		}
-	}
 
 	function writefile($params)
 	{
@@ -137,15 +60,6 @@ class TestController extends Controller{
 			$this->printfile($params);
 		}
 	}
-
-	function sanitize($input){
-		$output="";
-		$alist=array('ö', 'ä', 'å', 'Ö', 'Ä', 'Å', chr(128));
-		$blist=array('&ouml;', '&auml;', '&aring;', '&Ouml;', '&Auml;', '&Aring;', '&euro;');
-		$output=str_replace($alist, $blist, $input);
-		return $output;
-	}
-
 
 }
 

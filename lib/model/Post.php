@@ -4,12 +4,12 @@ class Post extends Model{
 	public $posted; /* when was this first posted? */
 	public $edited; /* when was this edited?  */
 	public $title; /* what is the title of this post? */
-	public $topic; /* under what topic does this one go? FIXME remove? */
+	public $topic; /* under what topic does this one go? refer to unique ID. */
 	public $id;  /* unique ID */
 	public $body; /* message body */
 
 	private $postcount; 	
-	function __construct($user, $body ){
+	function __construct($user="", $body="" ){
 		$this->postcount = Config::$data_dir . '/posts/postcount';
 		$this->user = $user;
 		$this->body = $body;
@@ -35,7 +35,7 @@ class Post extends Model{
 		} else {
 			$this->edited = time();
 		}
-		if(!isset($this->id)){
+		if(!isset($this->id)||empty($this->id)){
 			$this->id = $this->getUniqueId();
 		}
 		$post = array(

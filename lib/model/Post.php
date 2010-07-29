@@ -14,11 +14,32 @@ class Post extends Model{
 		$this->user = $user;
 		$this->body = $body;
 	}
-	function load($id){
-		$json = file_get_contents(Config::$data_dir . '/posts/' . $id);
+	function load($file){
+		$json = file_get_contents(Config::$data_dir . '/posts/' . $file);
 		$data = json_decode($json);
 		foreach($data as $k=>$v) {
 			$this->$k = $v;
+		}
+	}
+
+	/* clunky yet somple loading solution*/
+	function loadByID($id){
+		$dir = Config::$data_dir . '/posts/';
+		$post = new Post();
+		if ($dh = opendir($dir)) {
+			while (($file = readdir($dh)) !== false) {
+				//	$this->text .= "filename: $file : filetype: " . filetype($dir . $file) . "\n";
+				if (substr($file, -4)=="json"){
+					$post->load($file);
+					if ($post->id == $id){ 
+						$this->load($file);
+						closedir($dh);
+						return true;
+					}
+				}
+			}
+			closedir($dh);
+			return false;
 		}
 	}
 

@@ -70,14 +70,16 @@ class Post extends Model{
 		);
 		$out = json_encode($post);
 		$filename=$this->id . '_' . $this->user . '.json';
-		file_put_contents(Config::$data_dir . '/posts/' . $filename, $out, FILE_TEXT);
 
+		//file_put_contents(Config::$data_dir . '/posts/' . $filename, $out, FILE_TEXT);
+		file_put_contents(Config::$data_dir . '/posts/' . $filename, $out);
 	}
 
 	function getUniqueId() {
 		$uid = file_get_contents($this->postcount);
 		if (empty ( $uid ) ) $uid=0;
-		file_put_contents($this->postcount, ($uid + 1), FILE_TEXT);	
+		//file_put_contents($this->postcount, ($uid + 1), FILE_TEXT );	
+		file_put_contents($this->postcount, ($uid + 1));	
 		return trim($uid);
 	}
 }

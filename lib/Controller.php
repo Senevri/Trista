@@ -6,7 +6,7 @@ class Controller{
 	public function display($template){
 		//var_dump($template);
 		if ( empty($template) ) $template = Controller::$template;
-		$fileloc = Config::$local_dir . "/tpl/" . $template . ".tpl.php";
+		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
 		include($fileloc);
 	}
 

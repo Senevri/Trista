@@ -3,4 +3,7 @@
 <link rel="stylesheet" type="text/css" href="<?=Config::$http_location?>/static/css/main.css"/> 
 </head>
 <body>
-<div id="minimenu"><a href="<?=Config::$http_location?>/tests/?c=message&a=list_all">Messages</a></div>
+<div id="minimenu">
+<a href="<?=Config::$http_location?>/tests/?c=message&a=list_all">Messages</a>
+<a href="<?=Config::$http_location?>/tests/?c=login&a=register">Register</a>
+</div>

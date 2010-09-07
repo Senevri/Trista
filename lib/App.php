@@ -14,7 +14,7 @@ class App{
 	}
 
 	function display($template){
-		$fileloc = Config::$local_dir . "/tpl/" . $template . ".tpl.php";
+		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
 		include($fileloc);
 	}
 

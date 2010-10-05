@@ -1,5 +1,5 @@
 <div class="preformatted">
-<form action="<?=Config::$http_location?>/tests/" method="post">
+<form action="<?=Config::$http_location?>/" method="post">
 <input type="hidden" name="c" value="message">
 <input type="hidden" name="a" value="postfile">
 <input type="hidden" name="id" value="<?=$this->post->id?>">

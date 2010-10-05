@@ -1,10 +1,10 @@
 <div id="messagelist">
-<a href="<?=Config::$http_location?>/tests/?c=message&a=list_all"><div class="button">Back to list</div></a>
+<a href="<?=Config::$http_location?>/?c=message&a=list_all"><div class="button">Back to list</div></a>
 <?php 
 $even=false;
 foreach($this->messages as $msg) { 
 	if ($msg['index']==$this->topic) { ?>
-	<a href="<?=Config::$http_location?>/tests/?c=message&a=message&id=<?=$msg['id']?>&reply">
+	<a href="<?=Config::$http_location?>/?c=message&a=message&id=<?=$msg['id']?>&reply">
 	<div class="button">Reply</div></a>
 	<br/>
 
@@ -15,7 +15,7 @@ foreach($this->messages as $msg) {
 <? 	$this->post = new Post();
 	$this->post->load($msg['id']);
 		$this->display('viewmessage'); ?> <hr/></div>
-	<!-- <a href="<?=Config::$http_location?>/tests/?c=message&a=message&id=<?=$msg['id']?>">
+	<!-- <a href="<?=Config::$http_location?>/?c=message&a=message&id=<?=$msg['id']?>">
 	<b>User:</b><?=ucfirst($msg['user'])?>  <b>Topic:</b>
 	<?=$msg['title']?></a></br>
 	<div class="preformatted"><?=$msg['body']?></div> 
@@ -23,5 +23,5 @@ foreach($this->messages as $msg) {
 <?
 }?>
 <br/>
-<!-- <a href="<?=Config::$http_location?>/tests/?c=message&a=message"<div class="button">New Message</div></a> -->
+<!-- <a href="<?=Config::$http_location?>/?c=message&a=message"<div class="button">New Message</div></a> -->
 </div>

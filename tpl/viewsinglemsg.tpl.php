@@ -12,8 +12,8 @@
 <?=str_replace("\r\n", "<br/>", $this->post->body)?>
 
 </div>
-<br>
-<a href="<?=Config::$http_location?>/tests/?c=message&a=list_all"><div class="button">Back to list</div></a>
+<br />
+<a href="<?=Config::$http_location?>/?c=message&a=list_all"><div class="button">Back to list</div></a>
 <? if (App::$user instanceof User): ?>
 <a href="<?=$_SERVER['REQUEST_URI']?>&reply"><div class="button">Reply</div></a>
 <? endif // has user?> 

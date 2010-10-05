@@ -64,13 +64,13 @@ class LoginController extends Controller{
 		}
 		extract($params);
 		if (empty($username) || empty($password)){
-			$this->text = "login failed";
+			$this->text = "registering failed";
 			$this->display('pre_content');
 			$this->index();
 			return;
 		}
 		$user = new User(strtolower($username), $password);
-		if(!$user->login()) {
+		if(!$user->check_user()) {
 			if($user->register()){
 				$this->text = "registered new user";
 				$this->display('pre_content');
@@ -78,10 +78,11 @@ class LoginController extends Controller{
 				$this->text = "Error: Could not register";
 				$this->display('pre_content');
 			}
+		} else {
+			$this->text ="username taken, please try something else";
 		}
-		$this->text ="user logged in";
 		$this->display('pre_content');
-		$this->display('userinfo');
+		//$this->display('userinfo');
 		
 	}
 	function logout(){

@@ -21,7 +21,8 @@ class User extends Model{
 			if (empty($this->users)) 
 				$this->users = array($account);
 			if ($this->user_exists($username, $this->users)) {
-				return $this->login();
+				//return $this->login();
+				return false;
 			} // if here account not found
 			$this->users[] = $account;
 		}
@@ -32,6 +33,15 @@ class User extends Model{
 	function user_exists($user, $users){
 		foreach($users as $account){
 			if ($account->username== $user) return true;
+		}
+		return false;
+	}
+	/*FIXME: This is so stupid...*/
+	function check_user(){
+		$users =
+			json_decode(file_get_contents($this->datasource));
+		foreach($users as $account){
+			if ($account->username== $this->username) return true;
 		}
 		return false;
 	}

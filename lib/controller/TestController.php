@@ -15,7 +15,7 @@ class TestController extends Controller{
 	function testsql(){
 		$this->text = "hello, world!";
 		$this->display('pre_content');
-
+	}
 	function index(){
 		if($this->has_user) {
 			$this->display('load_dialog');

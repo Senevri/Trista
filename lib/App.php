@@ -13,13 +13,15 @@ class App{
 		$this->ctrl = new LoginController(); 
 	}
 
+    //duplicate functionality with showTemplate
 	function display($template){
 		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
-		include($fileloc);
+		include($fileloc); //this is probably bad.
 	}
 
 	function index(){
-		$this->ctrl->index();
+	/*login not yet necessary at manranta*/
+		//$this->ctrl->index(); 
 		$this->text = "Running application";
 		$this->display('pre_content');
 
@@ -40,11 +42,6 @@ class App{
 		}
 		$this->display('footer');
 		ob_end_flush();
-		//$this->text = "running application";
-		//self::$template = "pre_content";
-		//$this->display( );
-		//$menu = new Menu;
-		//$menu->show();v
 	}
 
 	/**

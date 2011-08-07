@@ -4,6 +4,8 @@
 </head>
 <body>
 <div id="minimenu">
+<!--
 <a href="<?=Config::$http_location?>/?c=message&a=list_all">Messages</a>
 <a href="<?=Config::$http_location?>/?c=login&a=register">Register</a>
+-->
 </div>

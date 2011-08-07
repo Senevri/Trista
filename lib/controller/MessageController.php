@@ -2,6 +2,8 @@
 class MessageController extends Controller{
 
 	private $has_user=false;
+	public $messages;
+	
 	function __construct(){
 		$login = new LoginController();
 		$login->index();
@@ -128,8 +130,11 @@ class MessageController extends Controller{
 				}
 			}
 			uasort($this->messages, array( $this, 'cmp_posted'));
-			if (isset($params['long']) || isset($params['topic'])) {
-				if (isset($params['topic'])) {
+			if (!empty($params['p']) || 
+				isset($params['long']) || 
+				isset($params['topic'])) {
+				$p = explode('&', $params['p']);
+				if (isset($params['topic']) || in_array("topic", $p)) {
 					$this->topic = $params['topic']; 
 					sort($this->messages);
 				}

@@ -2,7 +2,7 @@
 <a href="<?=Config::$http_location?>/?c=message&a=list_all"><div class="button">Back to list</div></a>
 <?php 
 $even=false;
-foreach($this->messages as $msg) { 
+foreach($messages as $msg) { 
 	if ($msg['index']==$this->topic) { ?>
 	<a href="<?=Config::$http_location?>/?c=message&a=message&id=<?=$msg['id']?>&reply">
 	<div class="button">Reply</div></a><br/>

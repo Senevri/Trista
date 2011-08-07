@@ -1,8 +1,8 @@
 <?php
 //include_once('config.php');
-function showTemplate($template){
-	include(Config::$local_dir . '/tpl/' . $template . '.tpl.php');
-}
+//function showTemplate($template){
+//	include(Config::$local_dir . '/tpl/' . $template . '.tpl.php');
+//}
 
 function __autoload($classname){
 	if (0==strcmp($classname, 'Config')) {
@@ -22,4 +22,5 @@ $http_location = Config::$http_location;
 $app = new App;
 $app->config = new Config;
 $app->run();
-//>
+//
+?>

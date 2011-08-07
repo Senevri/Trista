@@ -3,12 +3,12 @@ class Controller{
 
 	private static $template = 'pre_content';
 
-	public function display($template){
-		//var_dump($template);
-		if ( empty($template) ) $template = Controller::$template;
-		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
-		include($fileloc);
-	}
+ 	public function display($template){
+ 		$renderer = new Template();
+ 		$renderer->setData(get_object_vars($this));
+ 		//var_dump($renderer->Data);
+		$renderer->display($template);
+ 	}
 
 	function index(){
 		echo "works";

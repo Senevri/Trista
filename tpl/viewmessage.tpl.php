@@ -20,6 +20,6 @@
 <? if (App::$user instanceof User  && App::$user->username == $this->post->user):?> 
 <a href="<?=str_replace(array('&a=list_all' ), array('&a=message' ),
 $_SERVER['REQUEST_URI'])?>&id=<?=$this->post->id?>_<?=$this->post->user?>.json&edit"><div
-class="dark button">Edit</div></a></br>
+class="dark button">Edit</div></a>
 <? endif // correct user ?>
 </div>

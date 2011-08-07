@@ -7,29 +7,25 @@ class App{
 	static public $config;
 	static public $user;
 	static public $ctrl;
+	static public $renderer;
 
 	function __construct(){
 		// this takes care we're logged in everywhere on site
-		$this->ctrl = new LoginController(); 
-	}
-
-    //duplicate functionality with showTemplate
-	function display($template){
-		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
-		include($fileloc); //this is probably bad.
+		$this->ctrl = new LoginController();
+		$this->renderer = new Template(); 
 	}
 
 	function index(){
 	/*login not yet necessary at manranta*/
 		//$this->ctrl->index(); 
-		$this->text = "Running application";
-		$this->display('pre_content');
+		$this->renderer->Data['text'] = "Running application - Eclipse Edition";
+		$this->renderer->display('pre_content');
 
 	}
 
 	function run(){
 		ob_start();
-		$this->display('header');
+		$this->renderer->display('header');
 		switch($_SERVER['REQUEST_METHOD']){
 		case 'POST':
 			$this->handleRequest($_POST);
@@ -40,7 +36,7 @@ class App{
 		default:
 			break;
 		}
-		$this->display('footer');
+		$this->renderer->display('footer');
 		ob_end_flush();
 	}
 
@@ -63,7 +59,7 @@ class App{
 				} catch (Exception $e) {
 					$this->text = "Controller Error: ";
 					var_dump($e);
-					$this->display('pre_content');
+					$this->renderer->display('pre_content');
 				}
 			} else {
 				$this->text = "call to action!";

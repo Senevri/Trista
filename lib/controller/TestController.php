@@ -11,6 +11,11 @@ class TestController extends Controller{
 			$this->has_user=false;
 		}
 	}
+	
+	function template(){
+		$this->display('test.html');
+		
+	}
 
 	function testsql(){
 		$this->text = "hello, world!";

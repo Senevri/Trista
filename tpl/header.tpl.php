@@ -1,6 +1,8 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<?=Config::$http_location?>/static/css/main.css"/> 
+	<link rel="stylesheet" type="text/css" href="<?=Config::$http_location?>/static/css/main.css"/>
+	<script type="text/javascript" src="<?php echo(Config::$http_location . "/static/forms.js");?>">
+	</script> 
 </head>
 <body>
 <div id="minimenu">

@@ -1,0 +1,60 @@
+/* vBulletin 3 CSS For Style 'vbulletin Default' (styleid: 73) */
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+hr {
+	text-align: left;
+	border: 0;
+	width: 400px;
+	color: #111111;
+	background-color: #111111;	
+}
+
+dl {
+	margin: 0px 0px 0px 0px;
+}
+
+dt {
+	font-weight: bold;
+}
+
+div.newline{
+	height: 7px;
+	width: 100%;
+	background-image: url(images/grey_newline.jpg);
+	background-repeat: no-repeat;
+}
+
+div.hidden{
+	visibility: hidden;
+	height: 0px;
+}
+
+.inline {
+	margin-left: 0px;
+	display: inline;
+}
+#languages {
+	_font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0xp 0px 0px;
+}
+
+
+
+
+
+
+
+
+

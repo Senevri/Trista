@@ -4,7 +4,8 @@
 <input type="hidden" name="c" value="login">
 <input type="hidden" name="a" value="register">
 <input type="text" name="username">
-<input type="text" name="password">
+<input type="password" name="password" id="pwd">
+<input type="checkbox" onClick="showhide()" name="v_pass"><span>show password?</span>
 <input type="submit" value="Register">
 </form>
 </div>

@@ -30,6 +30,17 @@ class Template{
 		//echo $fileloc . "<br>";
 		$contents = file_get_contents($fileloc);
 		// put templated stuff in
+		/// get all keys from template file to replace
+		//// find tag start position, find tag end position, add the 
+		$keys = array();
+		$offset = 0;
+		foreach($this->Data as $k=>$v){
+				$offset = strpos($contents, "<!-- $k -->", $offset);
+				if($offset>0){
+					$contents = str_replace("<!-- $k -->", $v, $contents);
+				}
+		} 
+		
 		$ret = 0;
 		
 		echo $contents;

@@ -7,7 +7,7 @@ class App{
 	static public $config;
 	static public $user;
 	static public $ctrl;
-	static public $renderer;
+	public $renderer;
 
 	function __construct(){
 		// this takes care we're logged in everywhere on site
@@ -18,9 +18,10 @@ class App{
 	function index(){
 	/*login not yet necessary at manranta*/
 		//$this->ctrl->index(); 
-		$this->renderer->Data['text'] = "Running application - Eclipse Edition";
+		$text = "Running application - Eclipse Edition";
+		//$this->renderer->Data['text'] = "Running application - Eclipse Edition";
+		$this->renderer->Data['text']=$text;
 		$this->renderer->display('pre_content');
-
 	}
 
 	function run(){

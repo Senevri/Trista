@@ -13,6 +13,7 @@ class TestController extends Controller{
 	}
 	
 	function template(){
+		$this->testmsg = "<h1>hello world</h1>";
 		$this->display('test.html');
 		
 	}

@@ -59,6 +59,7 @@ class Post extends Model{
 		if(!isset($this->id)||empty($this->id)){
 			$this->id = $this->getUniqueId();
 		}
+		/* this part.. */
 		$post = array(
 			'id'=>$this->id, 
 			'user'=>$this->user, 
@@ -73,6 +74,7 @@ class Post extends Model{
 
 		//file_put_contents(Config::$data_dir . '/posts/' . $filename, $out, FILE_TEXT);
 		file_put_contents(Config::$data_dir . '/posts/' . $filename, $out);
+		/*...is badwrong*/
 	}
 
 	function getUniqueId() {

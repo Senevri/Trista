@@ -16,6 +16,8 @@ class SivutController extends Controller {
 		//echo $this->body;
 		$this->display($page->template);
 	}
+	
+	// Mökit
 	function cabins(){
 		$page = new Page();
 		$page->load('cabins');
@@ -23,6 +25,15 @@ class SivutController extends Controller {
 		$this->display($page->template);
 		
 	}
+	// Galleria
+	function gallery () {
+		$page = new Page();
+		$page->load('gallery');
+		extract($page->content);
+		$this->display($page->template);
+	
+	}
+	
 	
 }
 ?>

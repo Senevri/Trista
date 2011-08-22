@@ -33,11 +33,33 @@ class TestController extends Controller{
 	function testsql(){
 		$this->text = "hello, world!";
 		//begin test
-		$handle = mysql_connect(CONFIG::$db_server, CONFIG::$db_user, 
+		$handle = mysql_connect(CONFIG	::$db_server, CONFIG::$db_user, 
 			CONFIG::$db_password) or die("unable to connect");
 		
 		mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
 		$res = mysql_query("SELECT * FROM test", $handle);
+		mysql_close($handle);
+	
+		while($hash = mysql_fetch_assoc($res)){
+			foreach ($hash as $k=>$v){
+				echo "$k => $v<br>";	
+			}
+		}
+		// end test
+		$this->display('pre_content');
+	}
+	
+	function setupmanrantasql(){
+		$this->text = "hello, world!";
+		//begin test
+		$handle = mysql_connect(CONFIG::$db_server, CONFIG::$db_user, 
+		CONFIG::$db_password) or die("unable to connect");
+		$query = "create table pages (id int, name varchar(255), template varchar(255), primary key (id))";
+ 		
+		mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
+		$res = mysql_query($query, $handle);
+		$query = "create table contents (id int, page int, name varchar(255), data text, language char(2) default 'fi', primary key (id), foreign key (page) references pages(id))";		$res = mysql_query($query, $handle);
+		$res = mysql_query($query, $handle);
 		mysql_close($handle);
 	
 		while($hash = mysql_fetch_assoc($res)){
@@ -58,20 +80,44 @@ class TestController extends Controller{
 		$query = str_replace(
 		array('\\'), array(''), $query);
 
-		echo($query . '<br/>');
+		$this->query = $query;
 		if(!empty($query)){
 			mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
 			$res = mysql_query(htmlspecialchars_decode($query), $handle);
 		}
 		mysql_close($handle);
+		$this->output = array();
+		$this->output[] = "Output:";
+		//$this->output .= ($res);
+		if(!empty($query)) {
+			$this->output = mysql_fetch_assoc($res);
+		}
 		$this->display("sqlquery");
-		var_dump($res);
-		echo "<br/>";
-		var_dump(mysql_fetch_assoc($res));
-		
-			
 		
 	}
+	
+	/* This only works if the server has a mail client. */
+	function mailtest(){
+		$message = "Line 1\nLine 2\nLine 3";
+
+		ini_set("SMTP", "smtp.gmail.com");
+		ini_set("smtp_port", "587");
+		$headers = 'From: no-reply@mansikkaranta.net' . "\r\n" .
+			'Reply-to: no-reply@mansikkaranta.net' . "\r\n" . 
+			'X-Mailer: PHP/' . phpversion();
+			
+		// In case any of our lines are larger than 70 characters, we should use wordwrap()
+		$message = wordwrap($message, 70);
+
+		// Send
+		
+		
+		mail('admin@mansikkaranta.net', 'My Subject', $message, $headers);
+	
+	}
+	
+		
+	
 	function index(){
 		if($this->has_user) {
 			$this->display('load_dialog');

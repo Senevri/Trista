@@ -6,18 +6,18 @@ class Page extends Model {
 	function __construct($id){
 		$this->template="leiska.html";
 		if(!empty($id)){
-			load($id);			
+			$this->load($id);			
 		}
 	}
 
 	function load($id){
 		$db = new DBConnection();
-		$page = $db->fetchRow("pages", "name=".$id);
+		$page = $db->fetchRow("pages", "name=\"".$id . "\"");
 		$template = $page['template'];	
-		$ctable = $db->fetchTable("contents", "table=".$page['id']);
+		$ctable = $db->fetchTable("contents", "page=".$page['id']);
 		foreach($ctable as $row) {
-			$contents[$row->key] = $row->data;			
-		}
+			$this->contents[$row['name']] = $row['data'];													
+		}		
 	}
 	
 	function save($id){

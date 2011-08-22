@@ -9,7 +9,7 @@ class DBConnection {
 	}
 	
 	function __destruct() {
-		mysql_close($handle);		
+		mysql_close($this->handle);		
 	}
 	
 	function fetchRow($table,$condition){
@@ -21,23 +21,24 @@ class DBConnection {
 		$query .= " LIMIT 1";
 		echo("DEBUG: " . $query . '<br/>');
 		if(!empty($query)){
-			mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
-			$res = mysql_query(htmlspecialchars_decode($query), $handle);
+			mysql_select_db(CONFIG::$db_user, $this->handle) or die("no DB");
+			$res = mysql_query(htmlspecialchars_decode($query), $this->handle);
 		}
 		return mysql_fetch_array($res, MYSQL_BOTH);		
 	}
 	
-	function fetchTable($table){
+	
+	function fetchTable($table, $condition=""){
 		$out = array();
 		$query = "SELECT * FROM " . $table;
 		if(!empty($condition)){
 			$query .= " WHERE " . $condition;
 		}
-		$query .= " LIMIT 1";
+		//$query .= " LIMIT 1";
 		echo("DEBUG: " . $query . '<br/>');
 		if(!empty($query)){
-			mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
-			$res = mysql_query($query, $handle);
+			mysql_select_db(CONFIG::$db_user, $this->handle) or die("no DB");
+			$res = mysql_query($query, $this->handle);
 		}
 		 while ($row = mysql_fetch_array($res, MYSQL_BOTH)){
 		 	$out[] = $row;
@@ -54,8 +55,8 @@ class DBConnection {
 		$query .= " VALUES (" . $values . ")"; 		
 		echo("DEBUG: " . $query . '<br/>');
 		if(!empty($query)){
-			mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
-			return mysql_query($query, $handle);
+			mysql_select_db(CONFIG::$db_user, $this->handle) or die("no DB");
+			return mysql_query($query, $this->handle);
 		}
 		return false;
 		
@@ -69,8 +70,8 @@ class DBConnection {
 		//$query .= " LIMIT 1";
 		echo("DEBUG: " . $query . '<br/>');
 		if(!empty($query)){
-			mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
-		 	return mysql_query($query, $handle);
+			mysql_select_db(CONFIG::$db_user, $this->handle) or die("no DB");
+		 	return mysql_query($query, $this->handle);
 		}
 		return false;
 		

@@ -7,6 +7,8 @@ class App{
 	static public $config;
 	static public $user;
 	static public $ctrl;
+	static public $lastrq;
+	
 	public $renderer;
 
 	function __construct(){
@@ -49,6 +51,7 @@ class App{
 			$this->index();
 		} else {
 			extract($params);
+			$this->lastrq = $params['c'];
 			unset($params['c']);
 			unset($params['a']);
 			if(!empty($c)) {

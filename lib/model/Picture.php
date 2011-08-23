@@ -1,16 +1,18 @@
 <?php
 class Picture extends Model {
 	public $name; /* tpl */
-	public $category; /* array or not? */
+	public $identifier; 
 	
 	function __construct($id){
-		$this->template="leiska.html";
 		if(!empty($id)){
 			load($id);			
 		}
 	}
 
 	function load($id){
+		$db = new DBConnection();
+		$db->fetchRow("pictures", "identifier=\"" . $id . "\"");
+		$path = Config::$data_dir . "/images/" . $identifier;
 		
 		
 	}

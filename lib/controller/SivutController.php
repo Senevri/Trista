@@ -1,20 +1,24 @@
 <?php
 class SivutController extends Controller {
+	private $language = "fi";
 	function __construct() {
-			
-	}
-	
-	function index(){				
-		//$this->display("Leiska.html");
+		//this assures we load the footer for every page.
 		$page = new Page('frontpage');
-		//$page->load('frontpage');
+	
 		if (is_array($page->contents)) {
 			foreach($page->contents as $k => $v) {
 			$this->$k = $v;
 			}			
 		}
+		$this->template = $page->template;
+		
+	}
+	
+	function index(){				
+		//$this->display("Leiska.html");
+	
 		//echo $this->body;
-		$this->display($page->template);
+		$this->display($this->template);
 	}
 	
 	// Mökit
@@ -25,6 +29,27 @@ class SivutController extends Controller {
 		$this->display($page->template);
 		
 	}
+	function in_english(){
+		$page = new Page();
+		$page->load('cabins');
+		extract($page->content);
+		$this->display($page->template);
+	}
+	function in_finnish(){
+		$page = new Page();
+		$page->load('cabins');
+		extract($page->content);
+		$this->display($page->template);
+	}
+	//info
+	function info(){
+		$page = new Page();
+		$page->load('cabins');
+		extract($page->content);
+		$this->display($page->template);
+		
+	}
+	
 	// Galleria
 	function gallery () {
 		$page = new Page();

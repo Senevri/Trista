@@ -1,5 +1,5 @@
-<div class="preformatted">
-<form action="<?=Config::$http_location?>/" method="post"> <!-- unsecure -->
+<div class="main-title">
+<form action="<?=Config::$http_location?>/<?=App::$lastrq?>" method="post"> <!-- unsecure -->
 <input type="hidden" name="c" value="login">
 <input type="hidden" name="a" value="login">
 <input type="text" name="username">

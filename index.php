@@ -6,7 +6,7 @@
 
 function __autoload($classname){
 	if (0==strcmp($classname, 'Config')) {
-		include_once('./config.php');
+		include_once('./config_local.php');
 	} else if (strpos($classname, "Controller")>0){
 		include_once(Config::$app_dir . '/lib/controller/' . ucfirst("$classname.php"));
 	}  else {

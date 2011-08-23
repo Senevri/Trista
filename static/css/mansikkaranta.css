@@ -6,8 +6,6 @@ body{
 	text-align:center;
 	font-family:'MothpoofScriptRegular', "Comic Sans MS";
 	color:rgb(218,232,192);
-	
-	
 }
 .kivet-bg{
 	background:url('/Mansikka/static/images/kivetlammikossa.jpg');
@@ -33,14 +31,12 @@ body{
 	border:3px solid;
 	border-color:rgb(128,162,188);
 	border-radius:16px;
-	/*margin-left: auto;
+	margin-left: auto;
 	margin-right: auto;
-	*/
-	
-	
+	/*
+	background:url('../static/images/mansikkakopat.jpg');
 	background-origin:content-box;
-	
-	
+	*/
 }
 
 #hd{
@@ -88,8 +84,6 @@ a:link{
 	padding-top:5px;
 	margin-bottom:10px;
 	margin-top: 10px;
-	
-	
 }
 .navi-b{
 	padding:5px;
@@ -105,7 +99,7 @@ a:link{
 
 body{
 	/*background-color:rgb(212,249,239);*/
-	background-image:url("/Mansikka/static/images/mansikkakopat.jpg");
+	background-image:url("/mansikka/static/images/mansikkakopat.jpg");
 	background-attachment:fixed;
 	background-position:center center;
 	background-repeat:no-repeat;

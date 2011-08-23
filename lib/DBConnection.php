@@ -27,7 +27,8 @@ class DBConnection {
 		return mysql_fetch_array($res, MYSQL_BOTH);		
 	}
 	
-	function fetchTable($table, $condition){
+	
+	function fetchTable($table, $condition=""){
 		$out = array();
 		$query = "SELECT * FROM " . $table;
 		if(!empty($condition)){

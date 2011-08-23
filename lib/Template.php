@@ -34,11 +34,11 @@ class Template{
 		//// find tag start position, find tag end position, add the 
 		$keys = array();
 		$offset = 0;
-		foreach($this->Data as $k=>$v){
-				$offset = strpos($contents, "<!-- $k -->", $offset);
-				if($offset>0){
-					$contents = str_replace("<!-- $k -->", $v, $contents);
-				}
+		foreach($this->Data as $k=>$v){			
+			//$offset = strpos($contents, "<!-- " . strtoupper($k) . " -->", $offset);
+			//if($offset>0){
+				$contents = str_replace("<!-- " . strtoupper($k) . " -->", $v, $contents);
+			//}
 		} 
 		
 		$ret = 0;

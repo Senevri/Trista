@@ -33,16 +33,17 @@ class TestController extends Controller{
 	function testsql(){
 		$this->text = "hello, world!";
 		//begin test
-		$handle = mysql_connect(CONFIG	::$db_server, CONFIG::$db_user, 
-			CONFIG::$db_password) or die("unable to connect");
-		
-		mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
-		$res = mysql_query("SELECT * FROM test", $handle);
-		mysql_close($handle);
-	
-		while($hash = mysql_fetch_assoc($res)){
+		//$handle = mysql_connect(CONFIG::$db_server, CONFIG::$db_user, 
+		//	CONFIG::$db_password) or die("unable to connect");
+		$db = new DBConnection();
+		//$db->open();
+		//mysql_select_db(CONFIG::$db_user, $handle) or die("no DB");
+		$rows = $db->fetchTable('test');
+		//$db->close();
+		foreach ($rows as $hash) {			
 			foreach ($hash as $k=>$v){
-				echo "$k => $v<br>";	
+				if(!is_numeric($k))
+					echo "$k => $v<br>";	
 			}
 		}
 		// end test
@@ -87,10 +88,11 @@ class TestController extends Controller{
 		}
 		mysql_close($handle);
 		$this->output = array();
-		$this->output[] = "Output:";
-		//$this->output .= ($res);
+		//$this->output[] = "Output:";
+		//$this->output[] = ($res);
+		//var_dump($res);
 		if(!empty($query)) {
-			$this->output = mysql_fetch_assoc($res);
+			while($this->output[] = mysql_fetch_assoc($res)){};
 		}
 		$this->display("sqlquery");
 		

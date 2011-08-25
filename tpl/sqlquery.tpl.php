@@ -7,7 +7,17 @@
 <br>
 <input type="submit" value="Post Query"> 
 </form>
-<?php foreach($output as $k => $v) {
-		echo $k . "\t:\t" . "<code>" . htmlspecialchars($v) . "</code><br/>";		
-	}; ?>
+
+<?php 
+	if (is_array($output)) {
+		foreach($output as $row) {
+			if(is_array($row)) {
+			foreach ($row as $k => $v) {
+				echo $k . "\t:\t" . "<code>" . htmlspecialchars($v) . "</code><span width='20'>\t  \t</span>";		
+			}} else {
+			
+			}
+			echo "<br/>";
+		}; 
+	} else echo $output ?>
 </div>

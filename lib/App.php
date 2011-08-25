@@ -8,6 +8,7 @@ class App{
 	static public $user;
 	static public $ctrl;
 	static public $lastrq;
+	static public $post = false;
 	
 	public $renderer;
 
@@ -31,6 +32,7 @@ class App{
 		$this->renderer->display('header');
 		switch($_SERVER['REQUEST_METHOD']){
 		case 'POST':
+			App::$post = true;
 			$this->handleRequest($_POST);
 			break;
 		case 'GET':

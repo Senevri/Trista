@@ -3,8 +3,10 @@ class SivutController extends Controller {
 	private $language = "fi";
 	function __construct() {
 		//this assures we load the footer for every page.
-		$page = new Page('frontpage');
-	
+		//$page = new Page('frontpage');
+		//if (empty($page)) {
+			$page = new Page('etusivu');
+		//}
 		if (is_array($page->contents)) {
 			foreach($page->contents as $k => $v) {
 			$this->$k = $v;

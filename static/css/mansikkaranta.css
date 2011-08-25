@@ -14,7 +14,16 @@ body{
 	background-repeat:no-repeat;
 	
 }
-
+.galimage{
+	width:auto; 
+	height:auto;
+	float:left; 
+	spacing:4px; 
+	padding:5px;
+	/*
+	background-color:rgb(128,128,136);
+	*/
+}
 #main{
 	color: rgb(64,64,32);
 	margin:10px;
@@ -99,7 +108,7 @@ a:link{
 
 body{
 	/*background-color:rgb(212,249,239);*/
-	background-image:url("/mansikka/static/images/mansikkakopat.jpg");
+	background-image:url("/beta/static/images/mansikkakopat.jpg");
 	background-attachment:fixed;
 	background-position:center center;
 	background-repeat:no-repeat;

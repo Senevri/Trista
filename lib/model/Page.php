@@ -1,5 +1,6 @@
 <?php
 class Page extends Model {
+	public $id;
 	public $template; /* tpl */
 	public $contents = array(); /* array or not? */
 	
@@ -13,6 +14,7 @@ class Page extends Model {
 	function load($id){
 		$db = new DBConnection();
 		$page = $db->fetchRow("pages", "name=\"".$id . "\"");
+		
 		$template = $page['template'];	
 		$ctable = $db->fetchTable("contents", "page=".$page['id']);
 		foreach($ctable as $row) {
@@ -20,7 +22,12 @@ class Page extends Model {
 		}		
 	}
 	
-	function save($id){
+	function get_all(){
+		$db = new DBConnection();
+		return $db->fetchTable("pages");
+	}
+	
+	function save(){
 		
 		
 	}		

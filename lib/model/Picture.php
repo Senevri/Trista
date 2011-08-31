@@ -22,9 +22,20 @@ class Picture extends Model {
 			$this->found = true;
 		}
 		$this->identifier = $row['identifier'];
-		$this->path = Config::$data_dir . "/images/" . $identifier;				
+		$this->path = Config::$data_dir . "/images/" . $this->identifier;				
 		
 	}
+	
+	/*function loadAll(){
+		$db = new DBConnection();
+		$pictures =  $db->fetchTable("pictures");
+		$out = array();
+		foreach ($pictures as $p) {
+		$lp = new Picture($p['id']);
+		array_push($out, $lp);
+		}
+		return $out;
+	}*/
 	
 	function save(){
 		$db = new DBConnection();	

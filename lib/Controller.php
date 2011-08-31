@@ -3,11 +3,11 @@ class Controller{
 
 	private static $template = 'pre_content';
 
- 	public function display($template){
+ 	public function display($tpl){
  		$renderer = new Template();
  		$renderer->setData(get_object_vars($this));
  		//var_dump($renderer->Data);
-		$renderer->display($template);
+		$renderer->display($tpl);
  	}
 
 	function index(){

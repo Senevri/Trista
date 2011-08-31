@@ -29,7 +29,7 @@ class DBConnection {
 		}
 		$query .= " LIMIT 1";
 		//echo("DEBUG: " . $query . '<br/>');
-	
+		
 		return mysql_fetch_array($this->do_query($query), MYSQL_BOTH);		
 	}
 	

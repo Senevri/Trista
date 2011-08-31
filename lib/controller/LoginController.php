@@ -92,7 +92,10 @@ class LoginController extends Controller{
 			$this->text = "user logged out";
 			$this->display('pre_content');
 			$this->display('login_dialog');
+			App::$user = null;
 		} else {
+			App::$user = null;
+		
 			$this->text = "wtf";
 			$this->display('pre_content');
 		}

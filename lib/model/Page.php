@@ -4,7 +4,7 @@ class Page extends Model {
 	public $template; /* tpl */
 	public $contents = array(); /* array or not? */
 	
-	function __construct($id){
+	function __construct($id=""){
 		$this->template="leiska.html";
 		if(!empty($id)){
 			$this->load($id);			
@@ -14,8 +14,10 @@ class Page extends Model {
 	function load($id){
 		$db = new DBConnection();
 		$page = $db->fetchRow("pages", "name=\"".$id . "\"");
+		$this->id=$id;
 		
-		$template = $page['template'];	
+		//var_dump($page);
+		$this->template = $page['template'];	
 		$ctable = $db->fetchTable("contents", "page=".$page['id']);
 		foreach($ctable as $row) {
 			$this->contents[$row['name']] = $row['data'];													

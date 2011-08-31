@@ -11,17 +11,17 @@ class Template{
 	}
 	
 	//duplicate functionality with showTemplate
-	function display($template){
+	function display($tpl){
 		if(is_array($this->Data)) {
 			extract($this->Data);
 		}
 		
-		if ( empty($template) ) $template = Controller::$template;
-		$fileloc = Config::$app_dir . "/tpl/" . $template . ".tpl.php";
+		if ( empty($tpl) ) $template = Controller::$template;
+		$fileloc = Config::$app_dir . "/tpl/" . $tpl . ".tpl.php";
 		if(file_exists($fileloc)) {
 			include($fileloc); //this is probably bad.
 		} else {
-			$fileloc = Config::$app_dir . "/tpl/" . $template;
+			$fileloc = Config::$app_dir . "/tpl/" . $tpl;
 			$this->parse($fileloc);
 		}
 	}

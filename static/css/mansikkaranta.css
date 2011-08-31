@@ -20,9 +20,17 @@ body{
 	float:left; 
 	spacing:4px; 
 	padding:5px;
-	/*
-	background-color:rgb(128,128,136);
-	*/
+	margin:5px;
+	border: 3px solid;
+	border-radius: 5px;
+	border-color:rgb(112,146,172);
+	background-color:rgb(158,184,205);
+
+}
+.image_ctrl{
+	background-color:rgb(158,184,205);
+	color: rgb(64,64,32);
+
 }
 #main{
 	color: rgb(64,64,32);
@@ -31,7 +39,7 @@ body{
 	padding-right:10px;
 	overflow:auto;
 	left: auto;
-	width:90%%;
+	width:auto%;
 	height:auto;
 	float:center;	
 	/*padding-bottom:128px;
@@ -54,11 +62,20 @@ body{
 	border:3px solid;
 	border-radius:16px;
 	border-color:rgb(0,96,128);
+	width: auto;
 	
 };
 
+.login{
+	background-color:rgb(52,121,174);
+	border:3px solid;
+	border-radius:16px;
+	border-color:rgb(0,96,128);
+};
+
+
 #bd{
-	width:95%;
+	width:auto;
 	align:center;
 	min-height:100%;
 }
@@ -73,6 +90,7 @@ body{
 	float:bottom;
 	text-align: right;
 	height:100px;
+	width: auto;
 	/*
 	margin-top:-100px;
 	*/
@@ -108,7 +126,10 @@ a:link{
 
 body{
 	/*background-color:rgb(212,249,239);*/
-	background-image:url("/beta/static/images/mansikkakopat.jpg");
+	/*background-image:url("/beta/static/images/mansikkakopat.jpg");*/
+	background-image:url("/beta/static/images/kivetlammikossa.jpg");
+	/*background-image:url("/beta/static/images/rantalaituri-vapa.jpg");*/
+	background-size: 100%;
 	background-attachment:fixed;
 	background-position:center center;
 	background-repeat:no-repeat;

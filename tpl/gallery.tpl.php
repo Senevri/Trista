@@ -1,17 +1,18 @@
-
-
 <?php 
 	//var_dump($pictures);
 	foreach($pictures as $p) {	
 			//echo $p['path'];
 			?> 
-			<div class="galimage">
-			<img width="400" height="300" src="/beta/data/images/<?php echo $p['identifier']?>"/>
-			<div class="preformatted" style="width: auto; color:black;">
+			<div class="galimage"><a href="<?php echo Config::$http_location . "/sivut/kuvat/" . $p['id']?>">
+			<img height="300" src="/beta/data/images/<?php echo $p['identifier']?>"/>
+			</a>
+			<?php if (App::$user instanceof User): ?>
+			<div class="image_ctrl" style="width: auto; color:black;">
 				<span style="margin-right:20px;">Poista</span>
-			
+		
+				
 				<form name="sel"
-					action="/mansikka/hallinta/tallenna"
+					action="<?=Config::$http_location ?>/hallinta/tallenna" 
 					method="post">
 				<input type="hidden" name="c" value="hallinta"/>
 				<input type="hidden" name="a" value="tallenna"/>
@@ -32,6 +33,7 @@
 				
 				
 			</div>
+			<?php endif; ?>
 			</div>
 			<?
 		

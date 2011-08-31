@@ -43,12 +43,13 @@ class HallintaController extends Controller{
 		}
 		$this->pages =Page::get_all();
 		
-		$this->display('gallery');
 		if (App::$user instanceof User) {
 			$this->display('upload_image');
 		} else {
 			$this->display('login_dialog');
 		}
+		$this->display('gallery');
+	
 	}
 	
 	function tallenna(){

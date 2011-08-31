@@ -68,7 +68,7 @@ class User extends Model{
 	}
 
 	function logout(){
-		setCookie("trista_user", "", time()-3600);
+		setCookie("trista_user", "", time()-7200);
 	}
 
 	function writefile($json)

@@ -16,7 +16,7 @@ class Template{
 			extract($this->Data);
 		}
 		
-		if ( empty($tpl) ) $template = Controller::$template;
+		if ( empty($tpl) ) $template = Controller::template();
 		$fileloc = Config::$app_dir . "/tpl/" . $tpl . ".tpl.php";
 		if(file_exists($fileloc)) {
 			include($fileloc); //this is probably bad.
@@ -53,3 +53,4 @@ class Template{
 }
 
 ?>
+

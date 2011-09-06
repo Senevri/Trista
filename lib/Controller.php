@@ -10,6 +10,10 @@ class Controller{
 		$renderer->display($tpl);
  	}
 
+	function template(){
+		return Controller::$template;
+	}
+
 	function index(){
 		echo "works";
 	}

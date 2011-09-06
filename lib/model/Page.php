@@ -4,17 +4,36 @@ class Page extends Model {
 	public $template; /* tpl */
 	public $contents = array(); /* array or not? */
 	
-	function __construct($id=""){
+	function __construct($name=""){
 		$this->template="leiska.html";
-		if(!empty($id)){
-			$this->load($id);			
+		if(!empty($name)){
+			if (is_numeric($name)) {
+				$this->load_by_id($name);
+			} else {
+				$this->load($name);			
+			}
 		}
 	}
 
-	function load($id){
+	/* copypaste function from load */
+	function load_by_id($id){
 		$db = new DBConnection();
 		$page = $db->fetchRow("pages", "id=\"".$id . "\"");
-		$this->id=$id;
+		$this->id=$page['id'];
+		var_dump($id);	
+		//var_dump($page);
+		$this->template = $page['template'];	
+		$ctable = $db->fetchTable("contents", "page=".$id);
+		foreach($ctable as $row) {
+			//$this->contents['id'] = $row['id'];
+			$this->contents[$row['name']] = $row['data'];													
+		}		
+	}
+
+	function load($name){
+		$db = new DBConnection();
+		$page = $db->fetchRow("pages", "name=\"".$name . "\"");
+		$this->id=$page['id'];
 		
 		//var_dump($page);
 		$this->template = $page['template'];	

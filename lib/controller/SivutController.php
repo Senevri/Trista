@@ -5,7 +5,7 @@ class SivutController extends Controller {
 		//this assures we load the footer for every page.
 		//$page = new Page('frontpage');
 		//if (empty($page)) {
-			$page = new Page('etusivu');
+			$page = new Page(1);
 		//}
 		if (is_array($page->contents)) {
 			foreach($page->contents as $k => $v) {

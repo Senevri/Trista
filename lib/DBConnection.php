@@ -74,13 +74,13 @@ class DBConnection {
 		condition uses sql syntax
 	*/
 	function update($table, $column, $value, $condition){
-		$query = "UPDATE TABLE " . $table;		
-		$query .= " SET " . $column . "=\"" . $value;
+		$query = "UPDATE " . $table;		
+		$query .= " SET " . $column . "=\"" . $value . "\"";
 		if (!empty($condition)){
 			$query .= " WHERE " . $condition;
 		}
 		//$query .= " LIMIT 1";
-		echo("DEBUG: " . $query . '<br/>');
+		echo("<code>DEBUG: " . $query . '</code><br/>');
 		$this->do_query($query);
 		return $this->do_query($query);
 		

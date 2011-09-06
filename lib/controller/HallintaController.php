@@ -41,6 +41,9 @@ class HallintaController extends Controller{
 				$this->page = new Page($page_id);
 				
 				$this->display("editor");
+			} else {
+				//add content to pages thingy?
+				$this->index();
 			}
 		} else {
 			$this->display("login_dialog");	
@@ -57,6 +60,10 @@ class HallintaController extends Controller{
 				array_push($data, array($params["title_".$i], $params["body_" . $i]));
 			}
 			foreach ($data as $row ){
+				//var_dump($row);
+				$c = new Content($row[0]);
+				$c->data = $row[1];
+				$c->save();	
 			//update contents 
 			//  set data = $row[1] where page = $page and name = $data[0]
 			}

@@ -25,7 +25,7 @@ setup();
 <input type="hidden" name="a" value="muutokset">
 <input type="hidden" name="page" value="<?=$page->id?>">
 <?php foreach ($page->contents as $k=>$v):?>
-<input type="hidden" name="id" value="<?=$content['id']?>">
+<input type="hidden" name="id" value="<!-- ?=$content['id']? -->">
 <span>Nimi: </span><br/>
 <input type="text" size=80 name="title_<?=$i?>" value="<?=$k?>"><br/>
 <span>Teksti: </span><br/>

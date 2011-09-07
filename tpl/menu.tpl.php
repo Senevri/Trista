@@ -12,10 +12,10 @@ if ($language == "fi") {
 	);
 } else {
 $napit = array(
-	"Frontpage" => "index",
-	"Cabins" => "cabins",
-	"Pictures" => "kuvat&en",
-	"Info" => "info",
+	"Frontpage" => "index/en",
+	"Cabins" => "cabins/en",
+	"Pictures" => "kuvat/en",
+	"Info" => "info/en",
 	"Suomeksi" => "index",
 	);
 }

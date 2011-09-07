@@ -21,13 +21,60 @@ class HallintaController extends Controller{
 			$pages = $db->fetchTable("pages");
 			$this->body = "";			
 			foreach($pages as $pg){
-				$this->body .= "<span>" . $pg['name'] . "</span></br>"; 
+				$this->body .= "<span><a href='" .
+					Config::$http_location . "/hallinta/sivut/" .
+					$pg['id']."'>" . $pg['name'] . "</a></span></br>"; 
 			}		
 			$this->display("leiska.html");
 		} else {
 			$this->display("login_dialog");
 		}
 	}
+	
+	function sivut($params){
+		if ($this->has_user) {
+			$page_id = isset($params['p']) ? $params['p'] : 0;
+			if (0 != $page_id) {
+				var_dump($page_id);
+				/* load selected page, load it's contents,show edit
+				for each content*/
+				$this->page = new Page($page_id);
+				
+				$this->display("editor");
+			}
+		} else {
+			$this->display("login_dialog");	
+		}
+	}
+	
+	function muutokset($params){
+		if ($this->has_user) {
+			$page = $params['page'];
+			$data = array();
+			//FIXME: ugly as hell - comes from editor.tpl.php
+			$c_count = (sizeof($params)-2)/2;
+			for($i = 0; $i != $c_count; $i++){
+				array_push($data, array($params["title_".$i], $params["body_" . $i]));
+			}
+			foreach ($data as $row ){
+			//update contents 
+			//  set data = $row[1] where page = $page and name = $data[0]
+			}
+			$this->sivut(array('p'=>$page));
+		}
+	}
+	
+	function sivupohja($params){
+		if ($this->has_user) {
+			$tpl = isset($params['p']) ? $params['p'] : "";
+			if ( !empty($tpl)) {
+				/* open editor for page */
+			}
+		} else {
+			$this->display("login_dialog");	
+		}
+	}
+	
 	
 	function kuvat()
 	{
@@ -93,7 +140,8 @@ class HallintaController extends Controller{
 				}
 				
 			}
-			$this->display("upload_image");
+			//$this->display("upload_image");
+			$this->kuvat();
 		} else {
 			$this->display('login_dialog');
 		}

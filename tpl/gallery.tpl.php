@@ -30,8 +30,7 @@
 				<input type="submit" value="Tallenna" />
 				<!-- a href="/mansikka/hallinta/tallenna">Tallenna</a --></span>
 				</form>
-				
-				
+								
 			</div>
 			<?php endif; ?>
 			</div>

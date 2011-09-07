@@ -18,6 +18,13 @@ class SivutController extends Controller {
 	}
 	
 	function init($params){
+		if (isset($params['en'])) {
+			$this->language = 'en';
+		}
+		if (isset($params['p']) && 'en' == $params['p']){
+			$this->language = 'en';
+		}
+		/*
 		if(isset($params['p']) && !empty($params['p'])){
 		$vars = explode("&", $params['p']);
 		
@@ -25,7 +32,8 @@ class SivutController extends Controller {
 		if (!empty($vars) && in_array("en", $vars)){
 			$this->language = "en";
 		}
-		$i = 0;		
+		$i = 0;
+		*/		
 		/*
 		for($i = 0; $i<sizeof($vars); i++){
 			if (($vars) != "en") {
@@ -48,11 +56,11 @@ class SivutController extends Controller {
 	function kuvat($params) {
 
 		$this->init($params);
-		var_dump($params);
+		//var_dump($params);
 		$this->display('menu');
 		$page = new Page();
 		$index = trim($params['p']);		
-		if (isset($index) && !empty($index)):
+		if (isset($index) && !empty($index) && is_numeric($index)):
 			//$page->load('kuvankatselu');
 			//extract($page->contents);
 			

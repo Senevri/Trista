@@ -13,13 +13,14 @@ class Page extends Model {
 
 	function load($id){
 		$db = new DBConnection();
-		$page = $db->fetchRow("pages", "name=\"".$id . "\"");
+		$page = $db->fetchRow("pages", "id=\"".$id . "\"");
 		$this->id=$id;
 		
 		//var_dump($page);
 		$this->template = $page['template'];	
 		$ctable = $db->fetchTable("contents", "page=".$page['id']);
 		foreach($ctable as $row) {
+			//$this->contents['id'] = $row['id'];
 			$this->contents[$row['name']] = $row['data'];													
 		}		
 	}

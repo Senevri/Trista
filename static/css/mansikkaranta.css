@@ -130,7 +130,7 @@ body{
 	/*background-image:url("/beta/static/images/mansikkakopat.jpg");*/
 	background-image:url("/beta/static/images/kivetlammikossa.jpg");
 	/*background-image:url("/beta/static/images/rantalaituri-vapa.jpg");*/
-	background-size: 100%;
+	background-size: 100% 100%;
 	background-attachment:fixed;
 	background-position:center center;
 	background-repeat:no-repeat;

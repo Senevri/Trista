@@ -8,7 +8,7 @@ class LoginController extends Controller{
 	
 	}
 
-	function index(){
+	function index(){		
 		if (App::$user instanceof User) {
 			$this->display('userinfo');
 		} else {
@@ -53,8 +53,16 @@ class LoginController extends Controller{
 			$this->display('pre_content');
 			App::$user = new User(strtolower($username), $password);
 		}
-		
-		$this->index();
+		if(!empty($p)){			
+			$rq = explode('/',$p);
+			//hax time!
+			//var_dump($rq); //reports "", "beta", ja sitten ctrl, action
+			//will break when not in beta
+			//TODO: fix when release time!
+			$rq['c']=$rq[2];  $rq['a'] = $rq[3];
+			App::handleRequest($rq);
+		}
+		//$this->index();
 	}
 
 	function register($params){

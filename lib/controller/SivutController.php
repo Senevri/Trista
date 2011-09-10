@@ -9,13 +9,26 @@ class SivutController extends Controller {
 		//}
 		if (is_array($page->contents)) {
 			foreach($page->contents as $k => $v) {
-			$this->$k = $v;
+			$this->$k = $this->parse($v);
 			}			
 		}
+		//$this->url = Config::$http_location;
 		$this->template = $page->template;		
 		
 		
 	}
+	function parse($content) {
+		$rpl = array('a href="', 'a href="<!-- URL -->','src="<!-- URL -->'  );
+		$with = array('a href="'.Config::$http_location . "/", 
+				'a href="'.Config::$http_location . "/",
+				'src="'.Config::$http_location  );
+	
+		return str_replace($rpl, $with ,$content);
+		
+		//return str_replace($rpl, Config::$http_location ,$content);
+		
+	}
+	
 	
 	function init($params){
 		if (isset($params['en'])) {
@@ -54,7 +67,7 @@ class SivutController extends Controller {
 	// Mökit
 	
 	function kuvat($params) {
-
+		$this->menu = "";
 		$this->init($params);
 		//var_dump($params);
 		$this->display('menu');
@@ -96,6 +109,7 @@ class SivutController extends Controller {
 	}
 	
 	function cabins($params){
+		$this->menu = "";
 		$this->init($params);		
 	    $this->display('menu');
 		$page = new Page();
@@ -107,6 +121,7 @@ class SivutController extends Controller {
 		
 	}
 	function english(){
+		$this->menu = "";
 		$this->init($params);		
 		$this->language="en";
 		$this->display('menu');
@@ -117,6 +132,7 @@ class SivutController extends Controller {
 	}
 	//info
 	function info($params){
+		$this->menu = "";
 		$this->init($params);		
 	    $this->display('menu');
 		$page = new Page();

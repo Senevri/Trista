@@ -2,6 +2,7 @@
 <form action="<?=Config::$http_location?>/<?=App::$lastrq?>" method="post"> <!-- unsecure -->
 <input type="hidden" name="c" value="login">
 <input type="hidden" name="a" value="login">
+<input type="hidden" name="p" value="<?=$_SERVER['REQUEST_URI'];?>">
 <input type="text" name="username">
 <input type="password" name="password" id="pwd">
 <input type="checkbox" onClick="showhide()" name="v_pass"><span>show password?</span>

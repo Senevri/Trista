@@ -3,13 +3,19 @@
  *	Copying Yhteiso a bit...
  */
 class App{
-	static public $template;
+	public $template;
+	public $config;
+	public $user;
+	public $ctrl;
+	public $lastrq;
+	public $post = false;
+	/*static public $template;
 	static public $config;
 	static public $user;
 	static public $ctrl;
 	static public $lastrq;
 	static public $post = false;
-	
+	 */	
 	public $renderer;
 
 	function __construct(){
@@ -49,7 +55,7 @@ class App{
 	 *	Expected params: $c ontroller, $a ction $p arams
 	 */
 	function handleRequest($params){
-		if(empty($params) ){
+			if(empty($params || $params['c'] == 'index') ){
 			$this->index();
 		} else {
 			extract($params);

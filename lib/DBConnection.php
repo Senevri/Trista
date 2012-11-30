@@ -5,19 +5,21 @@ class DBConnection {
 	// use SQL now, wrap later
 	private $handle = null;	
 	
-	function __construct () {		
-		$this->open();
+	public function __construct () {		
+		echo "constructor";
+		$this->handle = null;
+		//$this->open();
 	}
 
 	
-	function __destruct() {
+	public function __destruct() {
 		$this->close();
 
 	}
 	
 	function do_query($query){
 		if(!empty($query)){
-			if (null = $this->handle) 
+			if (null == $this->handle) 
 			{
 				throw new Exception ("no DB!");
 			}
@@ -55,7 +57,7 @@ class DBConnection {
 			$query .= " WHERE " . $condition;
 		}
 		//$query .= " LIMIT 1";
-		echo("DEBUG: " . $query . '<br/>');
+		echo("DEBUG: " . $query . '<br/>' . "\n");
 		
 		$res = $this->do_query($query);
 		 /*while ($row = mysql_fetch_array($res, MYSQL_BOTH)){
@@ -73,9 +75,9 @@ class DBConnection {
 	
 	function insert($table, $keys, $values){
 		$query = "INSERT INTO  " . $table;
-		$query .= "($keys)"
-		$query .= " VALUES (" . $values . ")"; 		
-		echo("DEBUG: " . $query . '<br/>');
+		$query .= "($keys)";
+		$query .= " VALUES (" . $values . ");"; 		
+		echo("DEBUG: " . $query . '<br/>' . "\n" );
 		return $this->do_query($query);
 	}
 
@@ -95,13 +97,12 @@ class DBConnection {
 		$query = "UPDATE " . $table;		
 		$query .= " SET " . $column . "=\"" . $value . "\"";
 		if (!empty($condition)){
-			$query .= " WHERE " . $condition;
+			$query .= " WHERE " . $condition . ';';
 		}
 		//$query .= " LIMIT 1";
 		echo("<code>DEBUG: " . $query . '</code><br/>');
 		$this->do_query($query);
 		return $this->do_query($query);
-		
 	}
 	
 	
@@ -113,7 +114,7 @@ class DBConnection {
 	}
 	
 	
-	function open () {
+	public function open () {
 		if (null == $this->handle) {
 			/*$this->handle = mysql_connect(
 				CONFIG::$db_server, 
@@ -121,16 +122,22 @@ class DBConnection {
 				CONFIG::$db_password
 			) or die("unable to connect");
 			 */
-			$this->handle = &newADOConnection(Config::$db_type);
+			echo "1.1";
+			$this->handle = &NewADOConnection(Config::$db_type);
 			$this->handle->autoRollback = true;
+			echo "1.2";
 			$this->handle->PConnect(Config::$db_server);
+			print_r($this->handle);
+			echo "1.3";
 		}		
 		
 	}
 	function close () {
 		//mysql_close($this->handle);		
-		$this->handle->Close();
-		$this->handle = null;
+		if (null != $this->handle) {
+			$this->handle->Close();
+			$this->handle = null;
+		}
 	}
 	
 }

@@ -7,6 +7,6 @@ class Config {
 	public static $db_server = "sqlite3://home/esa/tekele/Trista/data/my.db";
 	public static $db_user = "esa";
 	public static $db_password = "foobar";
-	public static $db_type = "sqlite";
+	public static $db_type = "sqlite3";
 }
 ?>

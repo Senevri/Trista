@@ -16,12 +16,13 @@ function __autoload($classname){
 	}
 }
 
-
+$db = null;
 // test adodb_lite
 echo "1";
 $db = new DBConnection();
 echo "2";
 print_r($db);
+$db->open();
 $db->insert('pages','name, template', '"Frontpage", "<h1>Helloword</h1>"' );
 echo "3";
 print_r($db->fetchTable('pages'));

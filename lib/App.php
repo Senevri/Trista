@@ -4,7 +4,7 @@
  */
 class App{
 	public $template;
-	public $config;
+	//public $config;
 	public $user;
 	public $ctrl;
 	public $lastrq;
@@ -18,22 +18,24 @@ class App{
 	 */	
 	public $renderer;
 
-	function __construct(){
+	public function __construct(){
 		// this takes care we're logged in everywhere on site
 		$this->ctrl = new LoginController();
 		$this->renderer = new Template(); 
 	}
 
-	function index(){
+	public function index(){
 	/*login not yet necessary at manranta*/
 		//$this->ctrl->index(); 
+		echo "Foo";
 		$text = "Running application - Eclipse Edition";
 		//$this->renderer->Data['text'] = "Running application - Eclipse Edition";
 		$this->renderer->Data['text']=$text;
 		$this->renderer->display('pre_content');
 	}
 
-	function run(){
+	public function run(){
+		echo "Foo";
 		ob_start();
 		$this->renderer->display('header');
 		switch($_SERVER['REQUEST_METHOD']){
@@ -55,7 +57,8 @@ class App{
 	 *	Expected params: $c ontroller, $a ction $p arams
 	 */
 	function handleRequest($params){
-			if(empty($params || $params['c'] == 'index') ){
+
+		if(empty($params || $params['c'] == 'index') ){
 			$this->index();
 		} else {
 			extract($params);
